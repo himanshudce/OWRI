@@ -1,6 +1,6 @@
 {
-  "data_folder": "data_set/",
-  "output_folder": "results/",
+  "data_folder": "../data/hauge/",
+  "output_folder": "../results/hauge/",
   "trajectories": {
     "T1":{
     "North":{
