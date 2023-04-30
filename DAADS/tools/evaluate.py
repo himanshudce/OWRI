@@ -92,7 +92,7 @@ def test_then_train_batch(dataset, model, **model_kwargs):
     return perf_metrics, scores
 
 
-def test_then_train(
+def test_then_train(train_data,
     dataset, 
     model,
     subsample=50000,
@@ -116,7 +116,7 @@ def test_then_train(
         seed_everything(seed)
 
     # Get data
-    data = model_kwargs['data']
+    data = train_data
     # if isinstance(dataset, str):
     #     if dataset not in DATASETS:
     #         assert f"Dataset '{dataset}' could not be found."
