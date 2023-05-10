@@ -2,10 +2,21 @@ import torch
 import torch.nn.functional as F
 from torch import nn, optim
 from IncrementalTorch.utils.optim import SGDHD
+import numpy as np
+from scipy.spatial.distance import cdist
+from pyemd import emd
 
 
 def rmse_loss(input, target, size_average=None, reduce=None, reduction="mean"):
     return torch.sqrt(F.mse_loss(input, target, size_average, reduce, reduction))
+
+
+def earth_mover_loss(input, target, size_average=None, reduce=None, reduction="mean"):
+    # Compute the distance matrix between the bins of the distributions
+    distance_matrix = cdist(np.arange(len(input)).reshape(-1, 1), np.arange(len(target)).reshape(-1, 1), metric='cityblock')
+    # Compute the EMD between the two distributions
+    emd_distance = emd(input, target, distance_matrix)
+    return emd_distance
 
 
 ACTIVATION_FNS = {
@@ -22,6 +33,7 @@ ACTIVATION_FNS = {
 LOSS_FNS = {
     "mse": F.mse_loss,
     "rmse": rmse_loss,
+    "emd": earth_mover_loss,
     "mae": F.l1_loss,
     "smooth_mae": F.smooth_l1_loss,
     "bce": F.binary_cross_entropy,
