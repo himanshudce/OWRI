@@ -13,7 +13,8 @@ from .. import base
 class ProbabilityWeightedAutoencoder(base.AutoencoderBase):
     def __init__(
         self,
-        loss_fn="smooth_mae",
+        # loss_fn="smooth_mae",
+        loss_fn="emd",
         optimizer_fn: Type[torch.optim.Optimizer] = "sgd",
         build_fn=None,
         device="cpu",
@@ -64,7 +65,7 @@ class ProbabilityWeightedAutoencoder(base.AutoencoderBase):
 class NoDropoutAE(base.AutoencoderBase):
     def __init__(
         self,
-        loss_fn="smooth_mae",
+        loss_fn="emd",
         optimizer_fn="sgd",
         build_fn=None,
         device="cpu",
@@ -108,7 +109,7 @@ class NoDropoutAE(base.AutoencoderBase):
 class RollingWindowAutoencoder(base.AutoencoderBase):
     def __init__(
         self,
-        loss_fn="smooth_mae",
+        loss_fn="emd",
         optimizer_fn: Type[torch.optim.Optimizer] = "sgd",
         build_fn=None,
         device="cpu",
@@ -154,7 +155,7 @@ class RollingWindowAutoencoder(base.AutoencoderBase):
 class VariationalAutoencoder(base.AutoencoderBase):
     def __init__(
         self,
-        loss_fn="smooth_mae",
+        loss_fn="emd",
         optimizer_fn: Type[torch.optim.Optimizer] = "sgd",
         build_fn=None,
         device="cpu",

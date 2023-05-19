@@ -13,9 +13,9 @@ def rmse_loss(input, target, size_average=None, reduce=None, reduction="mean"):
 
 def earth_mover_loss(input, target, size_average=None, reduce=None, reduction="mean"):
     # Compute the distance matrix between the bins of the distributions
-    distance_matrix = cdist(np.arange(len(input)).reshape(-1, 1), np.arange(len(target)).reshape(-1, 1), metric='cityblock')
+    distance_matrix = cdist(np.arange(len(input)).reshape(-1, 1).astype('float64'), np.arange(len(target)).reshape(-1, 1).astype('float64'), metric='cityblock')
     # Compute the EMD between the two distributions
-    emd_distance = emd(input, target, distance_matrix)
+    emd_distance = emd(input.astype('float64'), target.astype('float64'), distance_matrix)
     return emd_distance
 
 

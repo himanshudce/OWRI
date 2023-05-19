@@ -228,7 +228,7 @@ class RollingPyTorch2RiverBase(base.Estimator):
 class AutoencoderBase(anomaly.AnomalyDetector, nn.Module):
     def __init__(
         self,
-        loss_fn="smooth_mae",
+        loss_fn="emd",
         optimizer_fn: Type[torch.optim.Optimizer] = "sgd",
         build_fn=None,
         device="cpu",
